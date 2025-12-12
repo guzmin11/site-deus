@@ -34,4 +34,36 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.toggle('active');
         });
     });
+    // --- Social Proof Toast ---
+    const socialToast = document.getElementById('socialProof');
+    const toastClose = document.getElementById('toastClose');
+    const toastNumber = document.getElementById('toastNumber');
+
+    if (socialToast) {
+        // 1. Set Random Number (logic: between 38 and 54 to look realistic + static 42 fallback)
+        if (toastNumber) {
+            const randomNum = Math.floor(Math.random() * (55 - 35 + 1)) + 35;
+            toastNumber.textContent = randomNum;
+        }
+
+        // 2. Show Toast Logic
+        const showToast = () => {
+            socialToast.classList.add('visible');
+
+            // Auto hide after 7 seconds
+            setTimeout(() => {
+                socialToast.classList.remove('visible');
+            }, 7000);
+        };
+
+        // Delay start by 5-8 seconds
+        setTimeout(showToast, 5000 + Math.random() * 3000);
+
+        // 3. Close Button Logic
+        if (toastClose) {
+            toastClose.addEventListener('click', () => {
+                socialToast.classList.remove('visible');
+            });
+        }
+    }
 });
